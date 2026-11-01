@@ -1,0 +1,6 @@
+# local editor cache
+.vs/
+# proofs are local review copies; build with ./build.sh
+dist/*_PROOF.pdf
+# temp files made by build.sh final
+.*.final.html
