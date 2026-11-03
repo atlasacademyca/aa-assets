@@ -4,23 +4,28 @@
   "level": "Level 3",
   "course": "Solving Problems with Algorithms",
   "learned": [
-    "GitHub and GitLab",
-    "Classes and Objects",
-    "Sorting",
-    "2D arrays",
-    "Update and Draw Loop"
+    "2D Arrays",
+    "Drawing to a screen",
+    "Update and draw loop",
+    "Software Patterns",
+    "Software Architecture"
   ],
   "skills": [
-    "Patterns and Architecture",
-    "Using loops to update and draw",
-    "Dictionaries and Buttons"
+    "Advanced data structures",
+    "Recursion",
+    "Algorithm analysis",
+    "Git branching",
+    "Data manipulation"
   ],
   "intro_skills_style": "checklist",
   "outro_skills_style": "checklist",
   "next_level": "Level 4",
-  "next_title": "Web and Internet Foundations",
+  "next_title": "Web Development Essentials",
   "intro_note": "the big project level!",
   "learned_note": "real dev tools - nice!",
   "skills_note": "this is how pros work",
-  "note": "can't wait to see what you'll create!"
+  "note": "can't wait to see what you'll create!",
+  "learned_section": false,
+  "skills_section": false,
+  "name_plate": false
 }
