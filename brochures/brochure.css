@@ -148,14 +148,14 @@ strong { font-weight: 700; }
 
 /* ---------- placeholders: remove before print ---------- */
 
-/* Proofs (./build.sh) show placeholders in pink; ./build.sh final adds class="final" to <body>. */
-:root { --ph: #ff2e8a; }
+/* Proofs (./build.sh) show placeholders in navy; ./build.sh final adds class="final" to <body>. */
+:root { --ph: var(--navy); }
 .ph-wrap { position: relative; }
-/* pink label over a photo that still needs replacing or a photo release */
+/* navy label over a photo that still needs replacing or a photo release */
 .ph-tag { position: absolute; top: 2mm; left: 2mm; z-index: 5; max-width: calc(100% - 4mm);
           background: var(--ph); color: #fff; font-family: "Outfit"; font-weight: 700; font-size: 7pt;
           letter-spacing: .04em; line-height: 1.25; padding: .8mm 2mm; border-radius: 1mm; }
-/* pink highlight on wording that is still a draft */
+/* navy highlight on wording that is still a draft */
 .ph-text { background: var(--ph); color: #fff; padding: 0 .6mm; border-radius: .6mm;
            -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 /* final print files: image tags disappear, draft wording prints as normal text */
