@@ -8,9 +8,9 @@ cd "$(dirname "$0")"
 EDGE="${EDGE:-/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe}"
 MODE="${1:-proof}"
 mkdir -p dist
-for name in ${ONLY:-resume software 3dma}; do
+for name in ${ONLY:-default software 3dma}; do
   case $name in
-    resume)   out=Brochure_Resume_Tri-Fold_A4_Dark ;;
+    default)  out=Brochure_Resume_Tri-Fold_A4_Dark ;;
     software) out=Brochure_WHYSE_Tri-Fold_A4_Dark ;;
     3dma)     out=Brochure_WHY3DAM_Tri-Fold_A4_Dark ;;
   esac
@@ -22,6 +22,7 @@ for name in ${ONLY:-resume software 3dma}; do
   fi
   url="file:///$(cygpath -m "$PWD/$src")"
   "$EDGE" --headless=new --disable-gpu --no-pdf-header-footer --virtual-time-budget=8000 \
+          --user-data-dir="$(cygpath -w "${TMPDIR:-/tmp}/brochure-edge-profile")" \
           --print-to-pdf="$(cygpath -w "$PWD/dist/$out.pdf")" "$url" 2>/dev/null
   rm -f ".$name.final.html"
   echo "built dist/$out.pdf"

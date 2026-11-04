@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<title>Atlas Academy x UCMAS Pop-Up - windshield flyer</title>
+<!--
+  Windshield flyer for the Atlas Academy x UCMAS Pop-Up, Thursday 5 Nov 2026, 5-7pm.
+  Size: 5.5 x 8.5 in (half letter), portrait. Page 1 = front, page 2 = back.
+  Front: loud and time-sensitive, sends drivers at Ironwood across the street to Sands Plaza.
+  Back: calm and professional, about Atlas's creative + technology education.
+  Fonts, logo and photos come from ../../brochures (same branding as the tri-fold brochures).
+  Build: ./build.sh  (headless Edge -> flyer.pdf + preview PNGs)
+-->
+<style>
+@font-face { font-family: "Outfit"; src: url("../../brochures/fonts/Outfit.ttf") format("truetype"); font-weight: 100 900; }
+@font-face { font-family: "DM Sans"; src: url("../../brochures/fonts/DMSans.ttf") format("truetype"); font-weight: 100 1000; }
+@font-face { font-family: "Caveat"; src: url("../../brochures/fonts/Caveat.ttf") format("truetype"); font-weight: 400 700; }
+
+:root {
+  --navy: #1a2249;
+  --navy-deep: #131938;
+  --gold: #e0b15d;
+  --cyan: #26a4cb;
+  --ink: #f3f4f8;
+  --ink-dim: #c9cde0;
+  --on-gold: #141a3a;
+  --pad: 9mm;
+}
+
+@page { size: 5.5in 8.5in; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #555; }
+body { font-family: "DM Sans", sans-serif; font-size: 10pt; line-height: 1.4; color: var(--ink);
+       -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+h1, h2, h3, .big { font-family: "Outfit", sans-serif; line-height: 1.05; text-wrap: balance; }
+p, li { text-wrap: pretty; }
+
+.sheet { width: 5.5in; height: 8.5in; position: relative; overflow: hidden; background: var(--navy);
+         break-after: page; display: flex; flex-direction: column; }
+.sheet:last-child { break-after: auto; }
+@media screen { .sheet { margin: 0 auto 0; } }
+
+/* =========================== FRONT =========================== */
+.front { background: var(--navy-deep); }
+
+/* gold "TODAY" band: the one gold block on this side */
+.today { flex-shrink: 0; background: var(--gold); color: var(--on-gold); padding: 4.2mm var(--pad) 3.6mm; text-align: center; }
+.today .kicker { font-family: "Outfit"; font-weight: 800; font-size: 11pt; letter-spacing: .32em; }
+.today .when { font-family: "Outfit"; font-weight: 800; font-size: 25pt; line-height: 1; margin-top: 1mm; letter-spacing: .01em; }
+.today .when span { white-space: nowrap; }
+
+/* ticker stripe under the band */
+.stripe { background: repeating-linear-gradient(-45deg, var(--navy-deep) 0 3.2mm, var(--gold) 3.2mm 6.4mm);
+          height: 2.6mm; flex-shrink: 0; }
+
+.front .body { padding: 6mm var(--pad) 0; flex: 1; display: flex; flex-direction: column; }
+.front .top { display: flex; align-items: center; justify-content: space-between; }
+.front .top img { width: 33mm; display: block; }
+.front .top .x { font-family: "Outfit"; font-weight: 700; font-size: 10.5pt; color: var(--ink-dim); letter-spacing: .14em; text-align: right; line-height: 1.25; }
+.front .top .x b { color: #fff; font-weight: 800; }
+
+.headline { margin-top: 7mm; font-family: "Outfit"; font-weight: 900; text-transform: uppercase;
+            font-size: 40pt; line-height: .93; color: #fff; letter-spacing: -.005em; }
+.headline .gold { color: var(--gold); } .headline .ln { display: block; white-space: nowrap; }
+.headline .course { font-size: 27pt; margin-top: 1.2mm; }
+.spin { display: inline-block; margin-top: 3mm; font-family: "Caveat"; font-weight: 700; font-size: 25pt;
+        color: var(--cyan); transform: rotate(-4deg); transform-origin: left center; line-height: 1; }
+
+.prizes { list-style: none; margin-top: 5.5mm; margin-bottom: 5mm; display: grid; gap: 3mm; }
+.prizes li { display: grid; grid-template-columns: 7mm 1fr; align-items: baseline; font-size: 11pt; color: var(--ink); }
+.prizes li::before { content: "\2605"; color: var(--gold); font-size: 12pt; }
+.prizes strong { font-family: "Outfit"; font-weight: 700; font-size: 12.5pt; color: #fff; }
+
+/* the "across the street" direction map */
+.map { margin-top: auto; margin-bottom: 0; border: .5mm solid var(--cyan); border-radius: 4mm; padding: 4mm 4mm 3.6mm;
+       background: rgba(26, 34, 73, .72); }
+.map .lead { font-family: "Outfit"; font-weight: 800; text-transform: uppercase; font-size: 15pt; color: #fff; line-height: 1.05; }
+.map .lead .gold { color: var(--gold); }
+.route { margin-top: 3.4mm; display: grid; grid-template-columns: 1fr 15mm 1fr; align-items: stretch; }
+.lot { border-radius: 2.5mm; padding: 2.6mm 2.6mm 2.4mm; display: flex; flex-direction: column; justify-content: center; }
+.lot small { display: block; font-family: "Outfit"; font-weight: 700; font-size: 7.5pt; letter-spacing: .16em; text-transform: uppercase; }
+.lot b { display: block; font-family: "Outfit"; font-weight: 800; font-size: 12pt; line-height: 1.1; margin-top: .5mm; }
+.lot.here { background: #ffffff14; border: .35mm dashed #ffffff55; }
+.lot.here small { color: var(--ink-dim); }
+.lot.there { background: var(--cyan); color: var(--navy-deep); }
+.lot.there small { color: var(--navy-deep); }
+.road { position: relative; background: #0d1230; display: flex; align-items: center; justify-content: center; }
+.road::before { content: ""; position: absolute; left: 50%; top: 1.5mm; bottom: 1.5mm; width: .6mm; margin-left: -.3mm;
+                background: repeating-linear-gradient(180deg, var(--gold) 0 2.2mm, transparent 2.2mm 4mm); }
+.road .arrow { position: relative; z-index: 1; font-family: "Outfit"; font-weight: 900; font-size: 22pt; color: #fff; line-height: 1;
+               background: #0d1230; padding: 0 .5mm; }
+.addr { margin-top: 3mm; font-size: 9.5pt; color: var(--ink-dim); line-height: 1.35; text-align: center; }
+.addr strong { color: #fff; font-weight: 700; }
+
+.front .foot { padding: 3.6mm var(--pad) 5mm; display: flex; justify-content: space-between; align-items: baseline;
+               font-family: "Outfit"; font-weight: 700; font-size: 9.5pt; letter-spacing: .06em; color: var(--ink-dim); }
+.front .foot .free { color: var(--gold); letter-spacing: .14em; text-transform: uppercase; }
+
+/* faded prize wheel behind the front (decorative) */
+.front .wheel { position: absolute; width: 153.4mm; height: 156.3mm; opacity: .44; z-index: 0; pointer-events: none;
+                left: calc(2.75in - 76.7mm);   /* wheel centre on the page's centre line */
+                top: calc(8.5in - 79.6mm); }   /* wheel centre on the bottom edge: top half shows */
+.front .today, .front .stripe, .front .body, .front .foot { position: relative; z-index: 1; }
+/* =========================== BACK =========================== */
+.back { padding: var(--pad); }
+.back .logo { width: 36mm; display: block; }
+.back h2 { margin-top: 6mm; font-family: "Outfit"; font-weight: 800; font-size: 23pt; line-height: 1.04; color: #fff; }
+.pen { position: relative; display: inline-block; color: #ffffffb3; }
+.pen svg { position: absolute; left: -4%; top: 40%; width: 108%; height: 30%; overflow: visible; }
+.pen svg path { fill: none; stroke: var(--gold); stroke-width: 5; stroke-linecap: round; }
+.fix { display: inline-block; font-family: "Caveat"; font-weight: 700; color: var(--gold); font-size: 1.35em;
+       line-height: .8; transform: rotate(-6deg) translateY(-.06em); margin-left: .1em; white-space: nowrap; }
+.back .intro { margin-top: 3.4mm; font-size: 10pt; color: var(--ink); }
+
+.photo { margin-top: 4.5mm; width: 100%; height: 30mm; object-fit: cover; object-position: center 40%; border-radius: 3mm; display: block; }
+
+.tracks { margin-top: 4.5mm; display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+.track { border-top: .9mm solid var(--gold); padding-top: 2.4mm; }
+.track .n { font-family: "Outfit"; font-weight: 700; font-size: 8pt; letter-spacing: .18em; color: var(--cyan); text-transform: uppercase; }
+.track h3 { font-family: "Outfit"; font-weight: 700; font-size: 12pt; line-height: 1.15; color: #fff; margin: .8mm 0 1.2mm; }
+.track p { font-size: 9.2pt; line-height: 1.38; color: var(--ink-dim); }
+
+.why { list-style: none; margin-top: 4.5mm; margin-bottom: 6mm; display: grid; gap: 1.8mm; }
+.why li { display: grid; grid-template-columns: 5.5mm 1fr; font-size: 9.5pt; line-height: 1.35; }
+.why li::before { content: "\2605"; color: var(--gold); font-size: 10pt; line-height: 1.3; }
+.why strong { color: #fff; }
+
+.contact { margin-top: auto; display: grid; grid-template-columns: 22mm 1fr; gap: 4mm; align-items: center;
+           border: .5mm solid var(--cyan); border-radius: 3.5mm; padding: 3.2mm; }
+.contact img { width: 22mm; height: 22mm; background: #fff; padding: 1.2mm; border-radius: 1.5mm; display: block; }
+.contact .lbl { font-family: "Outfit"; font-weight: 700; font-size: 11pt; color: #fff; line-height: 1.15; }
+.contact .lines { margin-top: 1mm; font-size: 9pt; line-height: 1.4; color: var(--ink-dim); }
+.contact .url { color: var(--cyan); font-weight: 700; }
+
+.fine { margin-top: 3mm; font-size: 6.6pt; line-height: 1.35; color: #c9cde0b3; }
+</style>
+</head>
+<body>
+
+<!-- ============================ FRONT ============================ -->
+<section class="sheet front" aria-label="Front">
+  <svg class="wheel" viewBox="-6 -10 212 216" aria-hidden="true"><g transform="rotate(7 100 100)"><path d="M100 100 L100.00 8.00 A92 92 0 0 1 146.00 20.33 Z" fill="#e0b15d"/><text x="117.08" y="36.25" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#131938" transform="rotate(15.0 117.08 36.25)">&#9733;</text><path d="M100 100 L146.00 20.33 A92 92 0 0 1 179.67 54.00 Z" fill="#26a4cb"/><text x="146.67" y="53.33" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#131938" transform="rotate(45.0 146.67 53.33)">&#9733;</text><path d="M100 100 L179.67 54.00 A92 92 0 0 1 192.00 100.00 Z" fill="#3854a0"/><text x="163.75" y="82.92" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#131938" transform="rotate(75.0 163.75 82.92)">&#9733;</text><path d="M100 100 L192.00 100.00 A92 92 0 0 1 179.67 146.00 Z" fill="#24346f"/><text x="163.75" y="117.08" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#131938" transform="rotate(105.0 163.75 117.08)">&#9733;</text><path d="M100 100 L179.67 146.00 A92 92 0 0 1 146.00 179.67 Z" fill="#e0b15d"/><text x="146.67" y="146.67" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#131938" transform="rotate(135.0 146.67 146.67)">&#9733;</text><path d="M100 100 L146.00 179.67 A92 92 0 0 1 100.00 192.00 Z" fill="#26a4cb"/><text x="117.08" y="163.75" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#131938" transform="rotate(165.0 117.08 163.75)">&#9733;</text><path d="M100 100 L100.00 192.00 A92 92 0 0 1 54.00 179.67 Z" fill="#3854a0"/><text x="82.92" y="163.75" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#131938" transform="rotate(195.0 82.92 163.75)">&#9733;</text><path d="M100 100 L54.00 179.67 A92 92 0 0 1 20.33 146.00 Z" fill="#24346f"/><text x="53.33" y="146.67" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#131938" transform="rotate(225.0 53.33 146.67)">&#9733;</text><path d="M100 100 L20.33 146.00 A92 92 0 0 1 8.00 100.00 Z" fill="#e0b15d"/><text x="36.25" y="117.08" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#131938" transform="rotate(255.0 36.25 117.08)">&#9733;</text><path d="M100 100 L8.00 100.00 A92 92 0 0 1 20.33 54.00 Z" fill="#26a4cb"/><text x="36.25" y="82.92" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#131938" transform="rotate(285.0 36.25 82.92)">&#9733;</text><path d="M100 100 L20.33 54.00 A92 92 0 0 1 54.00 20.33 Z" fill="#3854a0"/><text x="53.33" y="53.33" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#131938" transform="rotate(315.0 53.33 53.33)">&#9733;</text><path d="M100 100 L54.00 20.33 A92 92 0 0 1 100.00 8.00 Z" fill="#24346f"/><text x="82.92" y="36.25" font-size="13" text-anchor="middle" dominant-baseline="central" fill="#131938" transform="rotate(345.0 82.92 36.25)">&#9733;</text><line x1="100" y1="100" x2="100.00" y2="8.00" stroke="#131938" stroke-width="1.6"/><line x1="100" y1="100" x2="146.00" y2="20.33" stroke="#131938" stroke-width="1.6"/><line x1="100" y1="100" x2="179.67" y2="54.00" stroke="#131938" stroke-width="1.6"/><line x1="100" y1="100" x2="192.00" y2="100.00" stroke="#131938" stroke-width="1.6"/><line x1="100" y1="100" x2="179.67" y2="146.00" stroke="#131938" stroke-width="1.6"/><line x1="100" y1="100" x2="146.00" y2="179.67" stroke="#131938" stroke-width="1.6"/><line x1="100" y1="100" x2="100.00" y2="192.00" stroke="#131938" stroke-width="1.6"/><line x1="100" y1="100" x2="54.00" y2="179.67" stroke="#131938" stroke-width="1.6"/><line x1="100" y1="100" x2="20.33" y2="146.00" stroke="#131938" stroke-width="1.6"/><line x1="100" y1="100" x2="8.00" y2="100.00" stroke="#131938" stroke-width="1.6"/><line x1="100" y1="100" x2="20.33" y2="54.00" stroke="#131938" stroke-width="1.6"/><line x1="100" y1="100" x2="54.00" y2="20.33" stroke="#131938" stroke-width="1.6"/></g><circle cx="100" cy="100" r="96" fill="none" stroke="#f3f4f8" stroke-width="7"/><circle cx="112.53" cy="4.82" r="1.9" fill="#e0b15d"/><circle cx="136.74" cy="11.31" r="1.9" fill="#e0b15d"/><circle cx="158.44" cy="23.84" r="1.9" fill="#e0b15d"/><circle cx="176.16" cy="41.56" r="1.9" fill="#e0b15d"/><circle cx="188.69" cy="63.26" r="1.9" fill="#e0b15d"/><circle cx="195.18" cy="87.47" r="1.9" fill="#e0b15d"/><circle cx="195.18" cy="112.53" r="1.9" fill="#e0b15d"/><circle cx="188.69" cy="136.74" r="1.9" fill="#e0b15d"/><circle cx="176.16" cy="158.44" r="1.9" fill="#e0b15d"/><circle cx="158.44" cy="176.16" r="1.9" fill="#e0b15d"/><circle cx="136.74" cy="188.69" r="1.9" fill="#e0b15d"/><circle cx="112.53" cy="195.18" r="1.9" fill="#e0b15d"/><circle cx="87.47" cy="195.18" r="1.9" fill="#e0b15d"/><circle cx="63.26" cy="188.69" r="1.9" fill="#e0b15d"/><circle cx="41.56" cy="176.16" r="1.9" fill="#e0b15d"/><circle cx="23.84" cy="158.44" r="1.9" fill="#e0b15d"/><circle cx="11.31" cy="136.74" r="1.9" fill="#e0b15d"/><circle cx="4.82" cy="112.53" r="1.9" fill="#e0b15d"/><circle cx="4.82" cy="87.47" r="1.9" fill="#e0b15d"/><circle cx="11.31" cy="63.26" r="1.9" fill="#e0b15d"/><circle cx="23.84" cy="41.56" r="1.9" fill="#e0b15d"/><circle cx="41.56" cy="23.84" r="1.9" fill="#e0b15d"/><circle cx="63.26" cy="11.31" r="1.9" fill="#e0b15d"/><circle cx="87.47" cy="4.82" r="1.9" fill="#e0b15d"/><circle cx="100" cy="100" r="17" fill="#131938" stroke="#f3f4f8" stroke-width="3"/><circle cx="100" cy="100" r="6" fill="#e0b15d"/><path d="M100 -6 L111 14 L89 14 Z" fill="#f3f4f8" stroke="#131938" stroke-width="1.5"/></svg>
+  <div class="today">
+    <div class="kicker">ONE NIGHT ONLY</div>
+    <div class="when"><span>THU, NOV 5</span> · <span>5–7 PM</span></div>
+  </div>
+  <div class="stripe" aria-hidden="true"></div>
+
+  <div class="body">
+    <div class="top">
+      <img src="../../brochures/assets/logo-light.png" alt="Atlas Academy">
+      <div class="x"><b>ATLAS ACADEMY</b><br>× UCMAS POP-UP</div>
+    </div>
+
+    <h1 class="headline"><span class="ln">Spin the wheel.</span><span class="ln">Win a <span class="gold">full term</span></span><span class="ln">of <span class="gold">Intro to</span></span><span class="ln course gold">Software Engineering</span></h1>
+    <span class="spin">every spin wins!</span>
+
+    <ul class="prizes">
+      <li><span><strong>Grand prize:</strong> a full term of Intro to Software Engineering</span></li>
+      <li><span><strong>2nd prize:</strong> a Bambu Lab A1 mini 3D printer</span></li>
+      <li><span><strong>Student Showcase:</strong> see what kids here really build</span></li>
+    </ul>
+
+    <div class="map">
+      <p class="lead">Parked at Ironwood?<br><span class="gold">We're right across the street.</span></p>
+      <div class="route" role="img" aria-label="Map: from Ironwood Plaza, cross the street to the Atlas tent at Sands Plaza">
+        <div class="lot here"><small>You're here</small><b>Ironwood Plaza</b></div>
+        <div class="road"><span class="arrow">→</span></div>
+        <div class="lot there"><small>Atlas tent</small><b>Sands Plaza</b></div>
+      </div>
+      <p class="addr"><strong>Sands Plaza, 11020 No 5 Rd, Richmond.</strong> <br> Look for the Atlas tent in the parking lot.</p>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span class="free">Free · Drop in · 5 minutes</span>
+    <span>atlas-academy.ca</span>
+  </div>
+</section>
+
+<!-- ============================ BACK ============================ -->
+<section class="sheet back" aria-label="Back">
+  <img class="logo" src="../../brochures/assets/logo-light.png" alt="Atlas Academy">
+
+  <h2>An academy for young <span style="white-space:nowrap"><span class="pen">users<svg viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 13 C 30 9, 60 11, 98 6"/></svg></span><span class="fix">builders</span></span>
+    of technology.</h2>
+  <p class="intro">Most kids can work any app in minutes. At Atlas they learn what is happening underneath, and how to make it themselves. Small classes, real projects, serious instruction.</p>
+
+  <img class="photo" src="../../brochures/assets/july-2026-students-working.jpg" alt="Atlas students building projects in class">
+
+  <div class="tracks">
+    <div class="track">
+      <div class="n">Track I · 6 levels</div>
+      <h3>Intro to Software Engineering</h3>
+      <p>From a blinking LED on a Raspberry Pi to building their own AI agent at Level 6.</p>
+    </div>
+    <div class="track">
+      <div class="n">Track II · 4 levels</div>
+      <h3>3D Modelling &amp; Animation</h3>
+      <p>In Blender, students model, rig and animate their own original characters. No art experience needed.</p>
+    </div>
+  </div>
+
+  <ul class="why">
+    <li><span><strong>Taught by industry engineers and designers</strong> working at EA, IBM and Confluent.</span></li>
+    <li><span><strong>No copying steps off a screen.</strong> Students work out why something works, then build it.</span></li>
+    <li><span><strong>No homework. No extra screen time.</strong> Real learning, done in class.</span></li>
+  </ul>
+
+  <div class="contact">
+    <img src="../../brochures/assets/atlas-ucmas-popup.png" alt="QR code for Atlas Academy free workshops">
+    <div>
+      <div class="lbl">Scan for free workshops</div>
+      <div class="lines">
+        Richmond · Sands Plaza, 11020 No 5 Rd, Unit 213<br>
+        Vancouver · Young Guns Studio, 2239 Oak St<br>
+        <span class="url">atlas-academy.ca</span> · (778) 839-0873<br>admin@atlas-academy.ca
+      </div>
+    </div>
+  </div>
+
+  <p class="fine">No purchase necessary. Grand Prize (one full term of Intro to Software Engineering at Atlas Academy) is open to new prospective students not currently enrolled in any Atlas Academy program. Current students are eligible for the second prize (Bambu Lab A1 mini 3D printer). Atlas Academy's decisions on eligibility are final.</p>
+</section>
+
+</body>
+</html>
